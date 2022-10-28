@@ -77,9 +77,15 @@ public class Deck
         return 1;
     }
     
-    public int number3() {
-        return 3;
+    
+    
+    
+    
+    
+    public int number2() {
+        return 2;
     }
+    
     /**
      * Adds the provided card to the deck
      * @param cardToAdd: Card to add to this deck
