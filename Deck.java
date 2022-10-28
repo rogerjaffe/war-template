@@ -77,11 +77,6 @@ public class Deck
         return 1;
     }
     
-    
-    
-    
-    
-    
     public int number2() {
         return 2;
     }
