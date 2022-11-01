@@ -50,8 +50,8 @@ public class Deck
         int i = 0;
         while(i < s){
             int r = (int)(Math.random() * s)+1;
-            shuffledDeck.add(cards.get(r));
-            cards.remove(r);
+            shuffledDeck.add(cards.get(r-1));
+            cards.remove(r-1);
             s--;
         }
         System.out.println(shuffledDeck);
