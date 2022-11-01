@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.lang.Math;
 
 /**
  * Emulate a deck of cards
@@ -9,8 +10,8 @@ import java.util.ArrayList;
  */
 public class Deck
 {
-    private List<Card> cards;
-
+    static private List<Card> cards;
+    static private List<Card> shuffledDeck;
     /**
      * Deck constructor: Create an empty deck of cards
      */
@@ -44,7 +45,16 @@ public class Deck
      * Shuffles the cards in the deck
      */
     public void shuffle() {
-        // To be written
+        shuffledDeck = new ArrayList();
+        int s = cards.size();
+        int i = 0;
+        while(i < s){
+            int r = (int)(Math.random() * s)+1;
+            shuffledDeck.add(cards.get(r));
+            cards.remove(r);
+            s--;
+        }
+        System.out.println(shuffledDeck);
     }
     
     /**
@@ -73,14 +83,6 @@ public class Deck
         return null;
     }
     
-    public int number1() {
-        return 1;
-    }
-    
-    public int number2() {
-        return 2;
-    }
-    
     /**
      * Adds the provided card to the deck
      * @param cardToAdd: Card to add to this deck
@@ -90,3 +92,5 @@ public class Deck
     }
     
 }
+
+
