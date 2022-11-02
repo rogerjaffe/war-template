@@ -14,7 +14,6 @@ public class War
      */
     public War()
     {
-        // comment
         this.runEventLoop();
     }
     
@@ -23,7 +22,24 @@ public class War
      * from the War flowchart you created for this game
      */
     public void runEventLoop() {
-
+        Deck mainDeck = new Deck();
+        mainDeck.initializeNewDeck();
+        mainDeck.shuffle();
+        Deck[] bothDecks = mainDeck.dealDeck();
+        Deck pl1 = bothDecks[0];
+        Deck pl2 = bothDecks[1];
+        while(pl1.getDeckSize() > 0 && pl2.getDeckSize() > 0) {
+            
+        }
+        
+    }
+    
+    public void steal(Deck stealer, Deck giver) {
+        
+    }
+    
+    public void isWinner(Deck pl1, Deck pl2) {
+        
     }
     
     /**
