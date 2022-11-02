@@ -1,4 +1,7 @@
-
+import java.util.List;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.util.*;
 /**
  * War game class
  *
@@ -14,6 +17,8 @@ public class War
      */
     public War()
     {
+        List<Card> battlefield;
+        battlefield = new ArrayList<Card>();
         this.runEventLoop();
     }
     
@@ -35,6 +40,10 @@ public class War
     }
     
     public void steal(Deck stealer, Deck giver) {
+        
+    }
+    
+    public void war(Deck pl1, Deck pl2) {
         
     }
     
