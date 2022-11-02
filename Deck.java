@@ -54,7 +54,7 @@ public class Deck
             cards.remove(r-1);
             s--;
         }
-        System.out.println(shuffledDeck);
+        cards = shuffledDeck;
     }
     
     /**
