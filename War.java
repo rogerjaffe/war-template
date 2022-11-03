@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class War
 {
+    Deck Battlefield;
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
@@ -17,8 +18,6 @@ public class War
      */
     public War()
     {
-        List<Card> battlefield;
-        battlefield = new ArrayList<Card>();
         this.runEventLoop();
     }
     
@@ -33,6 +32,7 @@ public class War
         Deck[] bothDecks = mainDeck.dealDeck();
         Deck pl1 = bothDecks[0];
         Deck pl2 = bothDecks[1];
+        steal(pl1, pl2);
         while(pl1.getDeckSize() > 0 && pl2.getDeckSize() > 0) {
             
         }
@@ -40,11 +40,41 @@ public class War
     }
     
     public void steal(Deck stealer, Deck giver) {
-        
+        stealer.addCardToDeck(giver.dealCardFromDeck());
     }
     
     public void war(Deck pl1, Deck pl2) {
-        
+        if(pl1.getDeckSize() >= 4 && pl2.getDeckSize() >= 4) {
+            for(int i = 0; i < 3; i++) {
+                //add top 3 p1 to battlefield
+            }
+            
+            for(int i = 0; i < 3; i++) {
+                //add top 3 p1 to battlefield
+            }
+            
+            Card p1Top = pl1.dealCardFromDeck();
+            Card p2Top = pl2.dealCardFromDeck();
+            //add top cards to battlefield here
+            if(p1Top.getRank() == p2Top.getRank()) {
+                war(pl1, pl2);
+            }
+            if(p1Top.getRank() > p2Top.getRank()) {
+                //add battlefield to p1
+            } else {
+                //add battlefield to p2
+            }
+        } else {
+            if(pl1.getDeckSize() < 4) {
+                for(int i = 0; i < pl1.getDeckSize(); i++ ) {
+                    steal(pl1, pl2);
+                }
+            } else {
+                for(int i = 0; i < pl2.getDeckSize(); i++ ) {
+                    steal(pl2, pl1);
+                }
+            }
+        }
     }
     
     public void isWinner(Deck pl1, Deck pl2) {
