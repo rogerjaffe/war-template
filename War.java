@@ -46,23 +46,31 @@ public class War
     public void war(Deck pl1, Deck pl2) {
         if(pl1.getDeckSize() >= 4 && pl2.getDeckSize() >= 4) {
             for(int i = 0; i < 3; i++) {
-                //add top 3 p1 to battlefield
+                Battlefield.addCardToDeck(pl1.dealCardFromDeck());
             }
             
             for(int i = 0; i < 3; i++) {
-                //add top 3 p1 to battlefield
+                Battlefield.addCardToDeck(pl2.dealCardFromDeck());
             }
             
             Card p1Top = pl1.dealCardFromDeck();
             Card p2Top = pl2.dealCardFromDeck();
-            //add top cards to battlefield here
+            Battlefield.addCardToDeck(p1Top);
+            Battlefield.addCardToDeck(p2Top);
+            int size;
             if(p1Top.getRank() == p2Top.getRank()) {
                 war(pl1, pl2);
             }
             if(p1Top.getRank() > p2Top.getRank()) {
-                //add battlefield to p1
+                size = Battlefield.getDeckSize();
+                for(int i = 0; i < size; i++) {
+                    pl1.addCardToDeck(Battlefield.dealCardFromDeck());                   
+                }
             } else {
-                //add battlefield to p2
+                size = Battlefield.getDeckSize();
+                for(int i = 0; i < size; i++) {
+                    pl2.addCardToDeck(Battlefield.dealCardFromDeck());                   
+                }
             }
         } else {
             if(pl1.getDeckSize() < 4) {
