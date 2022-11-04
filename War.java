@@ -86,7 +86,12 @@ public class War
     }
     
     public void isWinner(Deck pl1, Deck pl2) {
-        
+        if(pl1.getDeckSize() == 0){
+            System.out.println("Player 2 wins");
+        }
+        if(pl2.getDeckSize() == 0){
+            System.out.println("Player 1 wins");
+        }
     }
     
     /**
