@@ -32,11 +32,23 @@ public class War
         Deck[] bothDecks = mainDeck.dealDeck();
         Deck pl1 = bothDecks[0];
         Deck pl2 = bothDecks[1];
-        steal(pl1, pl2);
+        Card p1; 
+        Card p2;
         while(pl1.getDeckSize() > 0 && pl2.getDeckSize() > 0) {
-            
+            p1= pl1.dealCardFromDeck();
+            p2= pl2.dealCardFromDeck();
+            if(p1.getRank() == p2.getRank()){
+                war(pl1, pl2);
+            }
+            if(p1.getRank() > p2.getRank()){
+                pl1.addCardToDeck(p1);
+                pl1.addCardToDeck(p2);
+            }else{
+                pl2.addCardToDeck(p1);
+                pl2.addCardToDeck(p2);
+            }
         }
-        
+        isWinner(pl1, pl2);
     }
     
     public void steal(Deck stealer, Deck giver) {
