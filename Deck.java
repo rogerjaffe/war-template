@@ -10,8 +10,8 @@ import java.lang.Math;
  */
 public class Deck
 {
-    static private List<Card> cards;
-    static private List<Card> shuffledDeck;
+    private List<Card> cards;
+    private List<Card> shuffledDeck;
     /**
      * Deck constructor: Create an empty deck of cards
      */

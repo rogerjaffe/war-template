@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class War
 {
-    Deck Battlefield;
+    Deck Battlefield = new Deck();
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
@@ -34,9 +34,15 @@ public class War
         Deck pl2 = bothDecks[1];
         Card p1; 
         Card p2;
-        while(pl1.getDeckSize() > 0 && pl2.getDeckSize() > 0) {
+        int turnCount = 1;
+        while(pl1.getDeckSize() > 0 && pl2.getDeckSize() > 0 && turnCount <= 300) {
+            System.out.printf("Turn Count: %d\n", turnCount);
+            System.out.printf("Pl1 DECK SIZE: " + pl1.getDeckSize() + "\n");
+            System.out.printf("Pl2 DECK SIZE: " + pl2.getDeckSize() + "\n");
             p1= pl1.dealCardFromDeck();
             p2= pl2.dealCardFromDeck();
+            System.out.printf("P1 Card Rank: %d\nP2 Card Rank: %d\n\n", p1.getRank(), p2.getRank());
+            
             if(p1.getRank() == p2.getRank()){
                 war(pl1, pl2);
             }
@@ -47,6 +53,7 @@ public class War
                 pl2.addCardToDeck(p1);
                 pl2.addCardToDeck(p2);
             }
+            turnCount++;
         }
         isWinner(pl1, pl2);
     }
@@ -85,12 +92,18 @@ public class War
                 }
             }
         } else {
-            if(pl1.getDeckSize() < 4) {
-                for(int i = 0; i < pl1.getDeckSize(); i++ ) {
+            if(pl2.getDeckSize() >= 4) {
+                int size = pl1.getDeckSize();
+                System.out.println(size);
+                for(int i = 0; i < size; i++ ) {
+                    System.out.println("STEALING PL1");
                     steal(pl1, pl2);
                 }
             } else {
-                for(int i = 0; i < pl2.getDeckSize(); i++ ) {
+                int size = pl2.getDeckSize();
+                System.out.println(size);
+                for(int i = 0; i < size; i++ ) {
+                    System.out.println("STEALING PL2");
                     steal(pl2, pl1);
                 }
             }
@@ -98,11 +111,10 @@ public class War
     }
     
     public void isWinner(Deck pl1, Deck pl2) {
-        if(pl1.getDeckSize() == 0){
+        if(pl1.getDeckSize() <= pl2.getDeckSize()){
             System.out.println("Player 2 wins");
-        }
-        if(pl2.getDeckSize() == 0){
-            System.out.println("Player 1 wins");
+        } else {
+            System.out.printf("Player 1 wins\n");
         }
     }
     
