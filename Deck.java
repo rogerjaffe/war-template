@@ -95,6 +95,9 @@ public class Deck
         cards.add(cardToAdd);
     }
     
+    public Card revealCardAtIndex(int i) {
+        return this.cards.get(i);
+    }
 }
 
 
