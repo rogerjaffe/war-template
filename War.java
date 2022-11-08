@@ -18,20 +18,20 @@ public class War
      */
     public War()
     {
-        this.runEventLoop();
-    }
-    
-    /**
-     * This is the game's event loop. The code in here should come
-     * from the War flowchart you created for this game
-     */
-    public void runEventLoop() {
         Deck mainDeck = new Deck();
         mainDeck.initializeNewDeck();
         mainDeck.shuffle();
         Deck[] bothDecks = mainDeck.dealDeck();
         Deck pl1 = bothDecks[0];
         Deck pl2 = bothDecks[1];
+        this.runEventLoop(pl1, pl2);
+    }
+    
+    /**
+     * This is the game's event loop. The code in here should come
+     * from the War flowchart you created for this game
+     */
+    public void runEventLoop(Deck pl1, Deck pl2) {
         Card p1; 
         Card p2;
         int turnCount = 1;
@@ -41,7 +41,8 @@ public class War
             System.out.printf("Pl2 DECK SIZE: " + pl2.getDeckSize() + "\n");
             p1= pl1.dealCardFromDeck();
             p2= pl2.dealCardFromDeck();
-            System.out.printf("P1 Card Rank: %d\nP2 Card Rank: %d\n\n", p1.getRank(), p2.getRank());
+            System.out.printf("P1 Top Card: %s of %s\nP2 Top Card: %s of %s\n\n", 
+                p1.getFace(), p1.getSuit(), p2.getFace(), p2.getSuit());
             
             if(p1.getRank() == p2.getRank()){
                 war(pl1, pl2);
@@ -63,6 +64,7 @@ public class War
     }
     
     public void war(Deck pl1, Deck pl2) {
+        System.out.printf("--------WAR TIME--------\n\n");
         if(pl1.getDeckSize() >= 4 && pl2.getDeckSize() >= 4) {
             for(int i = 0; i < 3; i++) {
                 Battlefield.addCardToDeck(pl1.dealCardFromDeck());
@@ -76,16 +78,20 @@ public class War
             Card p2Top = pl2.dealCardFromDeck();
             Battlefield.addCardToDeck(p1Top);
             Battlefield.addCardToDeck(p2Top);
+            System.out.printf("P1 Top Card: %s of %s\nP2 Top Card: %s of %s\n\n", 
+                p1Top.getFace(), p1Top.getSuit(), p2Top.getFace(), p2Top.getSuit());
             int size;
             if(p1Top.getRank() == p2Top.getRank()) {
                 war(pl1, pl2);
             }
             if(p1Top.getRank() > p2Top.getRank()) {
+                System.out.printf("--------P1  WINS--------\n\n");
                 size = Battlefield.getDeckSize();
                 for(int i = 0; i < size; i++) {
                     pl1.addCardToDeck(Battlefield.dealCardFromDeck());                   
                 }
             } else {
+                System.out.printf("--------P2  WINS--------\n\n");
                 size = Battlefield.getDeckSize();
                 for(int i = 0; i < size; i++) {
                     pl2.addCardToDeck(Battlefield.dealCardFromDeck());                   
@@ -96,18 +102,17 @@ public class War
                 int size = pl1.getDeckSize();
                 System.out.println(size);
                 for(int i = 0; i < size; i++ ) {
-                    System.out.println("STEALING PL1");
                     steal(pl1, pl2);
                 }
             } else {
                 int size = pl2.getDeckSize();
                 System.out.println(size);
                 for(int i = 0; i < size; i++ ) {
-                    System.out.println("STEALING PL2");
                     steal(pl2, pl1);
                 }
             }
         }
+        
     }
     
     public void isWinner(Deck pl1, Deck pl2) {
